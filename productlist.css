@@ -1,0 +1,486 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Inter', sans-serif; /* Using Inter font */
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f8f8; /* Light background */
+    color: #333;
+}
+
+/* Main Layout using Flexbox */
+.main-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+    gap: 30px; /* Space between left and right columns */
+    justify-content: center; /* Center content horizontally */
+    max-width: 1400px; /* Limit overall width for large screens */
+    margin: 0 auto; /* Center the container */
+}
+
+.left-column {
+    flex: 3; /* Takes up more space on larger screens */
+    min-width: 600px; /* Minimum width for the left column before wrapping */
+}
+
+.row1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between food items */
+    margin-bottom: 20px;
+    justify-content: center; /* Center items within the row */
+}
+
+/* Food Item Styling */
+.food-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    text-align: center;
+    position: relative; /* Needed for absolute positioning of button */
+    flex: 1 1 calc(33.333% - 20px); /* 3 items per row on larger screens, accounting for gap */
+    max-width: 300px; /* Max width for individual food item */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.food-item img {
+    border-radius: 5px;
+    width: 100%; /* Make image fill its container */
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    margin-bottom: 10px;
+}
+
+.food-item h1 {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.food-item h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.food-item h3 {
+    font-size: 1.0em;
+    color: orangered;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* Add to Cart Button Styling */
+.add-to-cart-wrapper {
+    position: absolute;
+    bottom: 30%; /* Position relative to the bottom of food-item */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px; /* Fixed width for the wrapper */
+    height: 40px; /* Fixed height for the wrapper */
+    display: flex; /* Use flex to center the button */
+    align-items: center;
+    justify-content: center;
+    z-index: 5; /* Ensure it's above other content */
+}
+
+.add-to-cart-btn {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* More rounded */
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    width: 100%; /* Fill wrapper */
+    height: 100%; /* Fill wrapper */
+}
+
+.add-to-cart-btn:hover {
+    background-color: orangered;
+    color: white;
+    border-color: orangered;
+}
+
+.add-to-cart-btn:hover img {
+    filter: brightness(0) invert(1); /* Change icon color on hover */
+}
+
+.add-to-cart-btn img {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.2s ease;
+}
+
+/* Quantity Button State */
+.add-to-cart-btn.quantity-selector {
+    background-color: orangered;
+    color: white;
+    border-color: orangered;
+    display: flex;
+    justify-content: space-between; /* Distribute items */
+    padding: 0 5px; /* Adjust padding for inner buttons */
+}
+
+.add-to-cart-btn.quantity-selector img {
+    filter: brightness(0) invert(1); /* White icon */
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+    height: 100%; /* Fill parent button height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover {
+    opacity: 0.8;
+}
+
+.quantity-display {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Right Column (Cart) Styling */
+.right-column {
+    flex: 1; /* Takes up less space */
+    min-width: 300px; /* Minimum width for the cart */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center cart content */
+    text-align: center;
+}
+
+.right-column h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 100%; /* Take full width to center text */
+}
+
+#emptyCartMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+}
+
+#emptyCartMessage img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+#emptyCartMessage p {
+    font-size: 1.1em;
+}
+
+#cartItemsList {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left; /* Align text within cart items to left */
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee; /* Separator for items */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cart-item-quantity-price {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.cart-item-quantity-price span {
+    font-weight: bold;
+    color: orangered;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.2em;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.remove-item-btn:hover {
+    color: orangered;
+}
+
+#cartTotalContainer {
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.order-total-text {
+    margin-bottom: 10px;
+}
+
+#cartTotalPrice {
+    color: orangered;
+}
+
+.carbon-neutral-delivery {
+    font-size: 0.8em;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    justify-content: center; /* Center the text */
+}
+
+.carbon-neutral-delivery::before {
+    content: url('assets/images/icon-carbon-neutral.svg'); /* Add carbon neutral icon */
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+
+.checkout-btn {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #e04a00; /* Darker orange on hover */
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Initially hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 450px; /* Limit modal width */
+    width: 90%; /* Responsive width */
+    transform: translateY(-50px); /* Start slightly above center */
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0); /* Slide into view */
+}
+
+.modal-checkmark {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-message {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.modal-cart-items {
+    background-color: #f8f8f8; /* Light background for items list */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    max-height: 200px; /* Limit height and add scroll if many items */
+    overflow-y: auto;
+}
+
+.modal-cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.modal-cart-item:last-child {
+    border-bottom: none;
+}
+
+.modal-cart-item-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.modal-cart-item-name {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.modal-cart-item-qty-price {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.modal-cart-item-qty-price span {
+    font-weight: bold;
+    color: orangered;
+}
+
+.modal-order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+#modalTotalPrice {
+    color: orangered;
+}
+
+.start-new-order-btn {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.start-new-order-btn:hover {
+    background-color: #e04a00;
+}
+
+
+/* Media Queries for Responsiveness */
+
+/* Tablet styles (adjust food-item to 2 per row) */
+@media (max-width: 991px) {
+    .food-item {
+        flex: 1 1 calc(50% - 20px); /* 2 items per row */
+    }
+    .left-column {
+        min-width: unset; /* Remove min-width to allow shrinking */
+        width: 100%; /* Take full width */
+    }
+    .main-container {
+        flex-direction: column; /* Stack columns on tablets */
+        align-items: center;
+    }
+    .right-column {
+        width: 100%; /* Take full width */
+        max-width: 400px; /* Limit cart width on tablets */
+    }
+}
+
+/* Mobile styles (adjust food-item to 1 per row) */
+@media (max-width: 767px) {
+    .food-item {
+        flex: 1 1 100%; /* 1 item per row */
+        max-width: 350px; /* Limit width on very small screens */
+    }
+    .main-container {
+        padding: 10px;
+    }
+    .right-column {
+        padding: 15px;
+    }
+}
+
+/* Specific breakpoint for 375px mobile design */
+@media (max-width: 375px) {
+    .food-item {
+        max-width: 280px; /* Adjust max-width for very narrow screens if needed */
+    }
+}
+
+/* Desktop styles (1441px width and up) */
+@media (min-width: 1441px) {
+    .food-item {
+        flex: 1 1 calc(25% - 20px); /* 4 items per row */
+    }
+}
